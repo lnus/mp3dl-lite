@@ -6,12 +6,11 @@ class Media(object):
     def download(self, url):
         try:
             yt = YouTube(url)
-        except:
-            print("Could not find video")
+        except Exception as e:
+            print(e)
             raise SystemExit
 
         filename = os.getcwd() + "\\" + yt.filename.replace("!", "").replace("&","").replace(" ", "-") + ".mp4"
-        print(filename)
 
         # Finds best quality for the video
         resolutions = ["1080p", "720p", "480p", "360p", "240p"]
@@ -27,7 +26,6 @@ class Media(object):
             video.download(filename)
         except Exception as e:
             print(e)
-            print("Could not download video")
             raise SystemExit
 
         return filename
@@ -37,8 +35,8 @@ class Media(object):
         try:
             os.system("ffmpeg -i {} {}".format(filename, mp3))
             os.remove(filename)
-        except:
-            print("Could not convert file")
+        except Exception as e:
+            print(e)
             raise SystemExit
         
 
