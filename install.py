@@ -14,7 +14,6 @@ It puts the mp3.bat script file in there
 It puts the install.py script file in there
 """
 
-os.system("pip uninstall pytube")
 os.system("pip install pytube==6.2.2")
 os.system("mkdir C:\\Mp3DL")
 os.system("copy Installfiles\\mp3.bat C:\\Mp3DL\\mp3.bat")
