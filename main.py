@@ -19,12 +19,13 @@ class Media(object):
 
         filename = "{}\\{}.mp4".format(os.getcwd(), yt.filename)
 
-        # Makes handling the file with ffmpeg a little bit easier :^) 
-        filename = filename.replace(" ", "-")
-
         # Remove non-ascii characters so that the filename works!!!
+        # Also removes some self-defined characters
+        forbidden = ["[", "]", "(", ")", " ", "&", "%", "#"]
         filename = u"{}".format(filename)
         filename = "".join(i for i in filename if i in string.printable)
+        for char in forbidden:
+            filename = filename.replace(char, "")
 
         # Finds best quality for the video
         resolutions = ["1080p", "720p", "480p", "360p", "240p"]
